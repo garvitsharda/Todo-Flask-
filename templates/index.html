@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="todo-form">
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Add a new task..." required>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div class="todo-list">
+    <ul>
+        {% for task in tasks %}
+        <li class="{% if task[2] == 'Done' %}done{% endif %}">
+            <span>{{ task[1] }}</span>
+            <a href="/done/{{ task[0] }}">✔</a>
+            <a href="/delete/{{ task[0] }}">✖</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
